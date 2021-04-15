@@ -22,3 +22,9 @@ class ZSClassifier:
         elif device == 'cpu':
             device = torch.device(device)
             self.model.load_state_dict(torch.load(state_dict, map_location=device))
+
+    def __call__(self, *args, **kwargs):
+        return self.model(*args, **kwargs)
+
+    def eval(self, *args, **kwargs):
+        return self.model.eval(*args, **kwargs)

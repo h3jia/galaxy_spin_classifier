@@ -11,5 +11,5 @@ setup(
     maintainer_email='he.jia.phy@gmail.com',
     license='Apache License, Version 2.0',
     python_requires=">=3",
-    install_requires=['numpy', 'torch']
+    install_requires=['astropy', 'numpy', 'scipy', 'torch']
 )
