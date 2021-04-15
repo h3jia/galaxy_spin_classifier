@@ -8,6 +8,7 @@ galaxy_spin_classifier/data/zs-4-4-resnet18-beta-5/epoch_60.p
 galaxy_spin_classifier/data/zs-4-4-resnet18-beta-5/epoch_70.p
 galaxy_spin_classifier/data/zs-4-4-resnet18-beta-5/epoch_80.p
 galaxy_spin_classifier/data/zs-4-4-resnet18-beta-5/epoch_90.p
+examples/_prepare_zs.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
