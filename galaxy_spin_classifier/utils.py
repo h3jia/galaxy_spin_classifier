@@ -37,7 +37,7 @@ def img_proc(img, target_size=TARGET_SIZE, raw_size=RAW_SIZE, translate=TRANSLAT
     return img[..., a:(a + c), b:(b + c)]
 
 
-def read_img(path, color=COLOR, stretch=STRETCH, img_size=IMG_SIZE, return_label=True, atleast_3d=True, table=None, **kwargs):
+def read_img(path, color=COLOR, stretch=STRETCH, img_size=IMG_SIZE, return_label=True, atleast_3d=True, table=None, index=None, **kwargs):
     fits_file = fits.open(path)
     img = fits_file[0].data[::-1] if color else np.mean(fits_file[0].data, axis=0)
     img = img_proc(img, **kwargs)
@@ -58,7 +58,7 @@ def read_img(path, color=COLOR, stretch=STRETCH, img_size=IMG_SIZE, return_label
         else:
             raise RuntimeError
     if return_label:
-        assert table is not None
+        assert table is not None and index is not None
         return img, np.array((table.iloc[index]['p_cw'], table.iloc[index]['p_acw']))
     else:
         return img
