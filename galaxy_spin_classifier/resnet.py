@@ -230,7 +230,7 @@ class ResNet(nn.Module):
             for i in range(len(add_fc) - 1):
                 fc_layers.append(nn.Linear(add_fc[i], add_fc[i + 1]))
                 if i != len(add_fc) - 2:
-                    fc_layers.append(nn.ReLU(inplace=True))
+                    fc_layers.append(nn.Tanh())
             return nn.Sequential(*fc_layers)
 
     def _make_layer(self, block: Type[Union[BasicBlock, Bottleneck]], planes: int, blocks: int,
@@ -281,6 +281,12 @@ class ResNet(nn.Module):
     def forward(self, x: Tensor) -> Tensor:
         return self._forward_impl(x)
 
+    def predict(self, x: Tensor) -> Tensor:
+        x_i = torch.flip(x, (-1,))
+        a = self(x)
+        a_i = self(x_i)
+        return torch.cat((a[..., 0:1], a_i[..., 0:1], 0.5 * (a[..., 1:2] + a_i[..., 1:2])), dim=-1)
+
 
 def _resnet(
     arch: str,
@@ -293,9 +299,9 @@ def _resnet(
     model = ResNet(block, layers, **kwargs)
     if pretrained:
         raise NotImplementedError
-        # state_dict = load_state_dict_from_url(model_urls[arch],
-        #                                       progress=progress)
-        # model.load_state_dict(state_dict)
+        """state_dict = load_state_dict_from_url(model_urls[arch],
+                                              progress=progress)
+        model.load_state_dict(state_dict)"""
     return model
 
 
