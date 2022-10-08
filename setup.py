@@ -5,7 +5,7 @@ setup(
     name='galaxy_spin_classifier',
     version='0.1.0.dev1',
     description='CNN classifiers for galaxy spin research.',
-    url='https://github.com/HerculesJack/galaxy_spin_classifier',
+    url='https://github.com/h3jia/galaxy_spin_classifier',
     author='He Jia and Hongming Zhu',
     maintainer='He Jia',
     maintainer_email='he.jia.phy@gmail.com',
