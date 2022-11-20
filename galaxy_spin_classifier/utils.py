@@ -75,7 +75,7 @@ def read_img(path, color=COLOR, img_size=IMG_SIZE, atleast_3d=True, random_flip=
             raise RuntimeError
 
     if random_flip:
-        flip = int(rng.randint(0, 2, 1))
+        flip = int(rng.integers(0, 2, 1))
         flip = 2 * flip - 1
     else:
         flip = 1
